@@ -7,9 +7,16 @@ void main() {
 }
 
 class XylophoneApp extends StatelessWidget {
-  void clickButton(int position) {
-    final player = AudioCache();
-    player.play('note$position.wav');
+  clickBtn({int position, Color color}) {
+    return Expanded(
+      child: FlatButton(
+        color: color,
+        onPressed: () {
+          final player = AudioCache();
+          player.play('note$position.wav');
+        },
+      ),
+    );
   }
 
   @override
@@ -18,49 +25,15 @@ class XylophoneApp extends StatelessWidget {
       home: Scaffold(
         body: SafeArea(
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              FlatButton(
-                onPressed: () {
-                  clickButton(1);
-                },
-                color: Colors.red,
-              ),
-              FlatButton(
-                onPressed: () {
-                  clickButton(2);
-                },
-                color: Colors.orange,
-              ),
-              FlatButton(
-                onPressed: () {
-                  clickButton(3);
-                },
-                color: Colors.yellow,
-              ),
-              FlatButton(
-                onPressed: () {
-                  clickButton(4);
-                },
-                color: Colors.green,
-              ),
-              FlatButton(
-                onPressed: () {
-                  clickButton(5);
-                },
-                color: Colors.cyan,
-              ),
-              FlatButton(
-                onPressed: () {
-                  clickButton(6);
-                },
-                color: Colors.blue,
-              ),
-              FlatButton(
-                onPressed: () {
-                  clickButton(7);
-                },
-                color: Colors.purple,
-              ),
+              clickBtn(position: 1, color: Colors.red),
+              clickBtn(position: 2, color: Colors.orange),
+              clickBtn(position: 3, color: Colors.yellow),
+              clickBtn(position: 4, color: Colors.green),
+              clickBtn(position: 5, color: Colors.cyan),
+              clickBtn(position: 6, color: Colors.blue[900]),
+              clickBtn(position: 7, color: Colors.purple),
             ],
           ),
         ),
